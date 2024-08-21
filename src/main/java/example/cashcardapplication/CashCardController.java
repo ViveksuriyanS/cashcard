@@ -12,7 +12,13 @@ public class CashCardController {
 
     @GetMapping("/{cashCardId}")
     public ResponseEntity<CashCard> findCashCardById(@PathVariable long cashCardId) {
-        CashCard cashCard = new CashCard(cashCardId, 123.45);
-        return ResponseEntity.ok(cashCard);
+        CashCard cashCard;
+        if(cashCardId == 1001L)  {
+            cashCard = new CashCard(1001L, 123.45);
+            return ResponseEntity.ok(cashCard);
+
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

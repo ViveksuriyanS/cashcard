@@ -29,4 +29,11 @@ class CashCardApplicationTests {
         assertThat(amount).isEqualTo(123.45);
     }
 
+    @Test
+    void shouldNotReturnCashCardWithUnknownId() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/cashcards/1002", String.class);
+        DocumentContext documentContext = JsonPath.parse(response.getBody());
+        assertThat(response.getBody()).isBlank();
+    }
+
 }
